@@ -1,5 +1,7 @@
 #include "HashTable.h"
 
+using namespace std;
+
 template <typename T> 
 HashTable<T>* create_table(string fname, int m) {}
 
