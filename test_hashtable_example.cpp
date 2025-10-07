@@ -5,6 +5,8 @@
 
 #include <iostream>
 #include "usecase.cpp"
+#include "Element.h"
+#include "HashTable.h"
 
 using namespace std;
 
