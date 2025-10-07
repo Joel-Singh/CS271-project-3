@@ -8,6 +8,9 @@
 #include <iostream>
 #include <string>
 #include "Element.h"
+#include <list>
+
+using namespace std;
 
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
@@ -25,10 +28,9 @@ class HashTable{
     private:
         int m; //size of hash table
 
-        T *arr; //hash table built on an array
+        list<Element<T>> *arr; //hash table built on an array
 
-        int             default_HashFunc        ( int key );
-        bool            verifyIndex             (int index);
+        int             default_hash_func        ( int key );
 
 };
 
