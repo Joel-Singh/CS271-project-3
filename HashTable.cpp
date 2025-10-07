@@ -1,4 +1,5 @@
 #include "HashTable.h"
+using namespace std;
 
 template <typename T> HashTable<T>::HashTable(int size) {}
 
