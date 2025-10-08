@@ -1,6 +1,5 @@
 test_hashtable_example: test_hashtable_example.cpp
-	g++ -I$HOME/local/include -L$HOME/local/lib -o test_hashtable_example test_hashtable_example.cpp
-
+	g++ -I$$HOME/local/include/cryptopp -L$$HOME/local/lib/ -o test_hashtable_example test_hashtable_example.cpp -lcryptopp
 test:test_HashTable.o
 	g++ -o	test test_HashTable.o
 

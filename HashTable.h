@@ -22,8 +22,10 @@ class HashTable{
                             HashTable           ( int size );
                             ~HashTable          ( void );
         void                insert              (T data, int k);
+        void                insert              (T data, string digest);
         void                remove              (T data, int k);
         bool                member              (T data, int k);
+        bool                member              (T data, string password);
         std::string         to_string           ( void ); 
     private:
         int m; //size of hash table

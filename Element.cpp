@@ -26,7 +26,12 @@ Return: none. element object is constructed
 */
 template<typename T>
     Element<T>:: Element ( void ){
-        key = -1;
+
+    if constexpr (std::is_same_v<T, int>) {
+        data = 0;
+    }
+
+    key = -1;
 }
 
 /*
@@ -43,6 +48,21 @@ template<typename T>
     Element<T>:: Element ( T d, int k ){
         key = k;
         data = d; 
+}
+
+/*
+=====================================================
+Constructor
+Create an element that also includes a digest, the full version of the hashed key and k will be truncated version
+Pre: Element<T> e(T data, int key, string digest);
+Post: Element is constructed.
+======================================================
+*/
+template<typename T>
+    Element<T>:: Element ( T d, int k, string digest ){
+        key = k;
+        data = d; 
+        this->digest = digest;
 }
 
 /*
@@ -86,6 +106,21 @@ Return: type(key) --> it
 template<typename T>
     int Element<T>:: get_key ( void ) const {
         return key;
+}
+
+//=================================================
+// get_digest
+// Gets the digest of the element
+//
+// PARAMETERS:
+//  void 
+//
+// RETURN VALUE:
+//  string representing the digest
+//=================================================
+template<typename T>
+    string Element<T>:: get_digest ( void ) const {
+        return digest;
 }
 
 

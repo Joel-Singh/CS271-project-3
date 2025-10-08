@@ -14,6 +14,7 @@ Program functionality: In Progress
 #include <stdexcept>
 #include "Element.h"
 #include "HashTable.h"
+#include "encryption.cpp"
 #include <cassert>
 
 using namespace std;
@@ -134,6 +135,31 @@ void HashTable<T>::insert(T data, int k) {
     arr[hashed_index].push_front(new_element);
 }
 
+//=================================================
+// insert
+// Alternative insert function that also attaches a digest to the element with
+// its key being the truncated int of the digest
+//
+// PARAMETERS:
+//  data: The data for the new element
+//  digest: The digest to attach
+//
+// RETURN VALUE:
+//  Return Value
+//=================================================
+template<typename T>
+void HashTable<T>::insert(T data, string digest) {
+    if (m == 0) {
+        return;
+    }
+
+    int k = truncate_digest_to_int(digest);
+
+    Element<T> new_element(data, k, digest);
+    int hashed_index = default_hash_func(k);
+
+    arr[hashed_index].push_front(new_element);
+}
 
 /*
 =========================================================
@@ -165,6 +191,38 @@ bool HashTable<T>::member(T data, int k) {
     return false;
 }
 
+
+//=================================================
+// member
+// Determines if the hashtable has a member with data and the password, hashing
+// the password first since thats what's stored in the hash table.
+//
+// PARAMETERS:
+//  data: Data of the member to find
+//  password: Password of the member
+//
+// RETURN VALUE:
+//  Return Value
+//=================================================
+template<typename T>
+bool HashTable<T>::member(T data, string password) {
+    if (m == 0) {
+        return false;
+    }
+
+    string digest = encrypt(password);
+
+    int index = truncate_digest_to_int(digest);
+    index = default_hash_func(index);
+
+    for (auto node = arr[index].begin(); node != arr[index].end(); ++node) {
+        if ((*node).get_digest() == digest) {
+            return true;
+        }
+    }
+
+    return false;
+}
 
 /*
 ================================================
