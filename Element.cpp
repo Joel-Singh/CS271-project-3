@@ -32,6 +32,7 @@ template<typename T>
     }
 
     key = -1;
+    digest = "";
 }
 
 /*

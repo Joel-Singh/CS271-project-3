@@ -7,6 +7,7 @@
 #include "usecase.cpp"
 #include "Element.h"
 #include "HashTable.h"
+#include "complexityTest.cpp"
 
 using namespace std;
 
@@ -199,14 +200,18 @@ void test_login()
 
 int main()
 {
-    test_get_key();
-    test_get_data();
-    test_insert();
-    test_remove();
-    test_member();
-    test_login();
+    cout << "Starting Testing" << endl;
 
-    cout << "Testing completed" << endl;
+    // test_get_key();
+    // test_get_data();
+    // test_insert();
+    // test_remove();
+    // test_member();
+    // test_login();
+    //
+    cout << "Finished currin's tests" << endl;
+
+    test_complexity();
 
     return 0;
 }

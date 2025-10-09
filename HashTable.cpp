@@ -252,3 +252,23 @@ string HashTable<T>::to_string() {
     }
     return ret;
 }
+
+//=================================================
+// get_highest_load
+// Gets the list with the highest number of elements in it
+//
+// RETURN VALUE:
+//  The length of the biggest list in the member array
+//=================================================
+template <typename T> 
+int HashTable<T>::get_highest_load() {
+    int highest = arr[0].size();
+    for (int i = 1; i < m; i++) {
+        int size = arr[i].size();
+        if (size > highest) {
+            highest = size;
+        }
+    }
+
+    return highest - 1;
+}

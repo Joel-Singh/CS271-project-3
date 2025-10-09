@@ -27,6 +27,7 @@ class HashTable{
         bool                member              (T data, int k);
         bool                member              (T data, string password);
         std::string         to_string           ( void ); 
+        int                 get_highest_load    ( void );
     private:
         int m; //size of hash table
 
