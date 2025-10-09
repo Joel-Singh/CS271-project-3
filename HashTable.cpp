@@ -11,6 +11,7 @@ Program functionality: In Progress
 
 #include <iostream>
 #include <sstream>
+#include <stdexcept>
 #include "Element.h"
 #include "HashTable.h"
 #include <cassert>
@@ -41,12 +42,11 @@ Return: none. hash table object is constructed
 */
 template<typename T>
     HashTable<T>::HashTable (int size){
+        if (size < 0){
+            throw runtime_error("");
+        }
         m = size;
         arr = new list<Element<T>>[m];
-
-        for (int i = 0; i < m; i++) {
-            arr[i] = {};
-        }
 }
 
 /*
@@ -60,6 +60,7 @@ Return: deallocates memory
 */
 template<typename T>
     HashTable<T>::~HashTable ( void ){
+        delete [] arr;
 }
 
 /*
@@ -83,7 +84,8 @@ template<typename T>
 /*
 ================================================
 remove
-Removes the data at key k if it exists, otherwise leave the hashmap unmodified
+Removes the data at key k if it exists, otherwise 
+leaves the hashmap unmodified
 Call: remove (T data, int k )
 Return: None
 ================================================
@@ -105,11 +107,26 @@ void HashTable<T>:: remove (T data, int k ){
     }
 }
 
-
+/*
+=========================================================
+insert
+Adds a new data node to the HashMap.
+    If the size of the HashMap is zero, the structure
+    is left unmodified.
+    Otherwise:
+    It creates an element object using the received values
+    Computes the index using the key
+    Appends the object to the linked at that index
+Pre: Function is used with HashTable object
+Post: Count of HashTable items increases
+=========================================================
+*/
 template<typename T>
 void HashTable<T>::insert(T data, int k) {
     if (m == 0) {
         return;
+    }else if (k < 0){
+        throw runtime_error("");
     }
     Element<T> new_element(data, k);
     int hashed_index = default_hash_func(k);
@@ -117,6 +134,22 @@ void HashTable<T>::insert(T data, int k) {
     arr[hashed_index].push_front(new_element);
 }
 
+
+/*
+=========================================================
+member
+This function determines whether a given data value
+and key are present within a HashTable. 
+    If the table is empty, false is returned. 
+    Otherwise,the function iterates through the structure, 
+    beginning at the computed index and aims to match the 
+    received data with the contents of the HashTable. 
+    If found, returns True. Else, false.
+Pre: Function is used with HashTable object
+Post: Returns T/F depending on if data and key
+are found in the HashTable.
+=========================================================
+*/
 template<typename T>
 bool HashTable<T>::member(T data, int k) {
     if (m == 0) {
@@ -132,6 +165,19 @@ bool HashTable<T>::member(T data, int k) {
     return false;
 }
 
+
+/*
+================================================
+to_string
+This function returns a string of the contents
+of a HashTable object. Ideally used when a user
+wants to print the object onto a console. 
+
+Pre: Function is used on a HashTable object.
+Post: Returns a string representation of the
+indicies and values of the HashTable.
+================================================
+*/
 template<typename T>
 string HashTable<T>::to_string() {
     string ret;
@@ -146,6 +192,5 @@ string HashTable<T>::to_string() {
 
         ret += "\n";
     }
-
     return ret;
 }
