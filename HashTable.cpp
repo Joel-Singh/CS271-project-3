@@ -95,7 +95,7 @@ template<typename T>
 
         #ifdef USE_MSBM
             assert(sizeof(int) == 4);
-            return key >> (32 - p) % m;
+            return (key >> (32 - p)) % m;
         #endif
 }
 
