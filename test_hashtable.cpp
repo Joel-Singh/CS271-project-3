@@ -3,6 +3,8 @@
 //  CS 271 Hash Table Project: File testing the HashTable
 //*************************************************
 
+#define NDEBUG // disable assertions
+
 #include "Element.h"
 #include "HashTable.h"
 #include "choose_hash_method.cpp"
