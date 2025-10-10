@@ -21,26 +21,21 @@ Program functionality: In Progress
 
 using namespace std;
 
-/*
-================================================
-Default Constructor
-Creates a hash table object with a default size
-of 10.
-Call: HashTable<T> ht;
-Return: none. hash table object is constructed
-================================================
-*/
+//=================================================
+// Default Constructor
+// Creates a hash table object with a default size
+// of 10.
+//=================================================
 template <typename T> HashTable<T>::HashTable(void) : HashTable(10) {}
 
-/*
-================================================
-Constructor
-Creates a hash table object using the passed-in
-size
-Call: HashTable<T> ht(int size);
-Return: none. hash table object is constructed
-================================================
-*/
+//=================================================
+// Constructor
+// Creates a hash table object using the passed-in
+// size
+//
+// PARAMETERS:
+//  size: Size of the hashtable
+//=================================================
 template <typename T> HashTable<T>::HashTable(int size) {
   p = floor(log2(m)) + 1;
   if (size < 0) {
@@ -50,15 +45,10 @@ template <typename T> HashTable<T>::HashTable(int size) {
   arr = new list<Element<T>>[m];
 }
 
-/*
-================================================
-Destructor
-Destroys object when it goes out of scope or at
-the end of the program.
-Call: done automatically
-Return: deallocates memory
-================================================
-*/
+//=================================================
+// Destructor
+// Cleans up allocated member array.
+//=================================================
 template <typename T> HashTable<T>::~HashTable(void) { delete[] arr; }
 
 /*
@@ -72,6 +62,17 @@ Post: A valid index within the structure is
 returned
 ================================================
 */
+//=================================================
+// default_hash_func
+// Function to transform a key into a index of the member array. Uses a hash
+// method dependent on defined macro variables in `./choose_hash_method.cpp`
+//
+// PARAMETERS:
+//  key: The key to input into the hash function
+//
+// RETURN VALUE:
+//  The corresponding index for that key using the hash function.
+//=================================================
 template <typename T> int HashTable<T>::default_hash_func(int key) {
   assert(m != 0);
 
@@ -92,15 +93,15 @@ template <typename T> int HashTable<T>::default_hash_func(int key) {
 #endif
 }
 
-/*
-================================================
-remove
-Removes the data at key k if it exists, otherwise
-leaves the hashmap unmodified
-Call: remove (T data, int k )
-Return: None
-================================================
-*/
+//=================================================
+// remove
+// Removes the element at key k if it exists, otherwise leaves the hashmap
+// unmodified
+//
+// PARAMETERS:
+//  data: The data of the element
+//  k: The key of the element
+//=================================================
 template <typename T> void HashTable<T>::remove(T data, int k) {
   if (m == 0) {
     return;
@@ -117,20 +118,20 @@ template <typename T> void HashTable<T>::remove(T data, int k) {
   }
 }
 
-/*
-=========================================================
-insert
-Adds a new data node to the HashMap.
-    If the size of the HashMap is zero, the structure
-    is left unmodified.
-    Otherwise:
-    It creates an element object using the received values
-    Computes the index using the key
-    Appends the object to the linked at that index
-Pre: Function is used with HashTable object
-Post: Count of HashTable items increases
-=========================================================
-*/
+//=================================================
+// insert
+// Adds a new data node to the HashMap.
+//     If the size of the HashMap is zero, the structure
+//     is left unmodified.
+//     Otherwise:
+//     1. It creates an element object using the received values
+//     2. Computes the index using the key
+//     3. Appends the object to the linked at that index
+//
+// PARAMETERS:
+//  data: The data of the element
+//  k: The key of the element
+//=================================================
 template <typename T> void HashTable<T>::insert(T data, int k) {
   if (m == 0) {
     return;
@@ -151,9 +152,6 @@ template <typename T> void HashTable<T>::insert(T data, int k) {
 // PARAMETERS:
 //  data: The data for the new element
 //  digest: The digest to attach
-//
-// RETURN VALUE:
-//  Return Value
 //=================================================
 template <typename T> void HashTable<T>::insert(T data, string digest) {
   if (m == 0) {
@@ -174,7 +172,7 @@ member
 This function determines whether a given data value
 and key are present within a HashTable.
     If the table is empty, false is returned.
-    Otherwise,the function iterates through the structure,
+    Otherwise, the function iterates through the structure,
     beginning at the computed index and aims to match the
     received data with the contents of the HashTable.
     If found, returns True. Else, false.
@@ -183,6 +181,24 @@ Post: Returns T/F depending on if data and key
 are found in the HashTable.
 =========================================================
 */
+
+//=================================================
+// member
+// This function determines whether a given data value
+// and key are present within a HashTable.
+//     If the table is empty, false is returned.
+//     Otherwise, the function iterates through the structure,
+//     beginning at the computed index and aims to match the
+//     received data with the contents of the HashTable.
+//     If found, returns True. Else, false.
+//
+// PARAMETERS:
+//  data: The data of the element
+//  k: The key of the element
+//
+// RETURN VALUE:
+//  Bool indicating whether the data and key pair is in the hashtable.
+//=================================================
 template <typename T> bool HashTable<T>::member(T data, int k) {
   if (m == 0) {
     return false;
@@ -199,15 +215,15 @@ template <typename T> bool HashTable<T>::member(T data, int k) {
 
 //=================================================
 // member
-// Determines if the hashtable has a member with data and the password, hashing
-// the password first since thats what's stored in the hash table.
+// Determines if the hashtable has a member with data and the password
 //
 // PARAMETERS:
 //  data: Data of the member to find
 //  password: Password of the member
 //
 // RETURN VALUE:
-//  Return Value
+//  Bool indicating whether the hashed password and key pair is in the
+//  hashtable.
 //=================================================
 template <typename T> bool HashTable<T>::member(T data, string password) {
   if (m == 0) {
@@ -228,18 +244,15 @@ template <typename T> bool HashTable<T>::member(T data, string password) {
   return false;
 }
 
-/*
-================================================
-to_string
-This function returns a string of the contents
-of a HashTable object. Ideally used when a user
-wants to print the object onto a console.
-
-Pre: Function is used on a HashTable object.
-Post: Returns a string representation of the
-indicies and values of the HashTable.
-================================================
-*/
+//=================================================
+// to_string
+// This function returns a string of the contents
+// of a HashTable object. Ideally used when a user
+// wants to print the object onto a console.
+//
+// RETURN VALUE:
+//  A string representation of the hashtable.
+//=================================================
 template <typename T> string HashTable<T>::to_string() {
   string ret;
   for (int i = 0; i < m; i++) {
@@ -258,7 +271,8 @@ template <typename T> string HashTable<T>::to_string() {
 
 //=================================================
 // get_highest_load
-// Gets the list with the highest number of elements in it
+// Gets the list with the highest number of elements in it. Used for testing the
+// load for the analysis.
 //
 // RETURN VALUE:
 //  The length of the biggest list in the member array
