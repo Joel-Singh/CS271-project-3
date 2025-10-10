@@ -9,61 +9,57 @@ Program functionality: Passes all test cases
 =====================================================
 */
 
+#include "Element.h"
 #include <iostream>
 #include <sstream>
-#include "Element.h"
-
 
 /*
 ================================================
 Default Constructor
-Creates an empty element. 
+Creates an empty element.
     Data value is set equal to zero
     Key becomes -1.
 Call: Element<T> e;
-Return: none. element object is constructed 
+Return: none. element object is constructed
 ================================================
 */
-template<typename T>
-    Element<T>:: Element ( void ){
+template <typename T> Element<T>::Element(void) {
 
-    if constexpr (is_same_v<T, int> || is_same_v<T, char>) {
-        data = 0;
-    }
+  if constexpr (is_same_v<T, int> || is_same_v<T, char>) {
+    data = 0;
+  }
 
-    key = -1;
-    digest = "";
+  key = -1;
+  digest = "";
 }
 
 /*
 =====================================================
 Constructor
 Creates an element using the passed in data values.
-    The key is always going to be a numeric value. 
+    The key is always going to be a numeric value.
     The actual data can be of any type.
 Pre: Element<T> e(T data, int key);
 Post: Element is constructed.
 ======================================================
 */
-template<typename T>
-    Element<T>:: Element ( T d, int k ){
-        key = k;
-        data = d; 
+template <typename T> Element<T>::Element(T d, int k) {
+  key = k;
+  data = d;
 }
 
 /*
 =====================================================
 Constructor
-Create an element that also includes a digest, the full version of the hashed key and k will be truncated version
-Pre: Element<T> e(T data, int key, string digest);
-Post: Element is constructed.
+Create an element that also includes a digest, the full version of the hashed
+key and k will be truncated version Pre: Element<T> e(T data, int key, string
+digest); Post: Element is constructed.
 ======================================================
 */
-template<typename T>
-    Element<T>:: Element ( T d, int k, string digest ){
-        key = k;
-        data = d; 
-        this->digest = digest;
+template <typename T> Element<T>::Element(T d, int k, string digest) {
+  key = k;
+  data = d;
+  this->digest = digest;
 }
 
 /*
@@ -75,26 +71,22 @@ Call: done automatically
 Return: deallocates memory
 ================================================
 */
-template<typename T>
-    Element<T>:: ~Element ( void ){
-}
+template <typename T> Element<T>::~Element(void) {}
 
 /*
 ================================================
 operator=
-Copies the values of the passed-in object 
+Copies the values of the passed-in object
 and returns a reference to the modified element/
 Call: elemObjt1 = elemObjct2
 Return: type(*this) --> Element<T>
 ================================================
 */
-template<typename T>
-    Element<T> Element<T>:: operator= ( const Element<T> &e){
-        data = e.data;
-        key = e.key;
-        return (*this);
+template <typename T> Element<T> Element<T>::operator=(const Element<T> &e) {
+  data = e.data;
+  key = e.key;
+  return (*this);
 }
-
 
 /*
 ================================================
@@ -104,26 +96,21 @@ Call: elemObject.get_key().
 Return: type(key) --> it
 ================================================
 */
-template<typename T>
-    int Element<T>:: get_key ( void ) const {
-        return key;
-}
+template <typename T> int Element<T>::get_key(void) const { return key; }
 
 //=================================================
 // get_digest
 // Gets the digest of the element
 //
 // PARAMETERS:
-//  void 
+//  void
 //
 // RETURN VALUE:
 //  string representing the digest
 //=================================================
-template<typename T>
-    string Element<T>:: get_digest ( void ) const {
-        return digest;
+template <typename T> string Element<T>::get_digest(void) const {
+  return digest;
 }
-
 
 /*
 ================================================
@@ -133,10 +120,7 @@ Call: elemObject.get_data().
 Return: type(key) --> any
 ================================================
 */
-template<typename T>
-    T Element<T>:: get_data ( void ) const {
-        return data;
-}
+template <typename T> T Element<T>::get_data(void) const { return data; }
 
 /*
 ================================================
@@ -146,23 +130,19 @@ Call: elemObject.set_data( T d ).
 Return: none.
 ================================================
 */
-template<typename T>
-    void Element<T>:: set_data ( T d ){
-        data = d;
-}
+template <typename T> void Element<T>::set_data(T d) { data = d; }
 
 /*
 ================================================
 to_string()
-Returns a string representation of the element 
+Returns a string representation of the element
 object
 Call: elemObject.to_string().
 Return: type(retVal) --> String
 ================================================
 */
-template<typename T>
-    std::string Element<T>:: to_string (  void ) const {
-        std::stringstream retVal;
-        retVal << "("<< get_data()<< ","<<get_key()<<")"; 
-        return retVal.str();
+template <typename T> std::string Element<T>::to_string(void) const {
+  std::stringstream retVal;
+  retVal << "(" << get_data() << "," << get_key() << ")";
+  return retVal.str();
 }

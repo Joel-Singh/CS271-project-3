@@ -1,18 +1,18 @@
 #include "HashTable.h"
-#include "cryptlib.h"
 #include "blake2.h"
+#include "cryptlib.h"
+#include "files.h"
 #include "filters.h"
 #include "hex.h"
 #include <fstream>
-#include "files.h"
-#include <vector>
 #include <stdint.h>
+#include <vector>
 
 using namespace std;
 using namespace CryptoPP;
 
-template <typename T> bool login(HashTable<T>* ht, T username, string password);
-template <typename T> HashTable<T>* create_table(string fname, int m);
+template <typename T> bool login(HashTable<T> *ht, T username, string password);
+template <typename T> HashTable<T> *create_table(string fname, int m);
 
 string get_hash();
 int string_to_int(string str);
@@ -51,31 +51,32 @@ int main() {
 // RETURN VALUE:
 //  A pointer to the created hashtable
 //=================================================
-template <typename T> 
-HashTable<T>* create_table(string fname, int m) {
-    // Forgot how to read a file, followed this: https://stackoverflow.com/a/51572325
-    ifstream file(fname);
-    HashTable<T>* hashtable = new HashTable<T>(m);
+template <typename T> HashTable<T> *create_table(string fname, int m) {
+  // Forgot how to read a file, followed this:
+  // https://stackoverflow.com/a/51572325
+  ifstream file(fname);
+  HashTable<T> *hashtable = new HashTable<T>(m);
 
-    if (file.is_open()) {
-        string line;
-        while (getline(file, line)) {
-            int comma = line.find(",");
-            string username = line.substr(0, comma);
-            string password = line.substr(comma + 2); // + 2 to get rid of the comma and space
+  if (file.is_open()) {
+    string line;
+    while (getline(file, line)) {
+      int comma = line.find(",");
+      string username = line.substr(0, comma);
+      string password =
+          line.substr(comma + 2); // + 2 to get rid of the comma and space
 
-            hashtable->insert(username, encrypt(password));
-        }
-
-        file.close();
-    } else {
-        throw runtime_error("Could not open `" + fname + "`");
+      hashtable->insert(username, encrypt(password));
     }
 
-    return hashtable;
+    file.close();
+  } else {
+    throw runtime_error("Could not open `" + fname + "`");
+  }
+
+  return hashtable;
 }
 
-template <typename T> 
-bool login(HashTable<T>* ht, T username, string password) {
-    return ht->member(username, password);
+template <typename T>
+bool login(HashTable<T> *ht, T username, string password) {
+  return ht->member(username, password);
 }
