@@ -6,8 +6,8 @@
 #include "Element.h"
 #include "HashTable.h"
 #include "choose_hash_method.cpp"
-#include "complexityTest.cpp"
 #include "test_HashTable.cpp"
+#include "test_complexity_and_load.cpp"
 #include "usecase.cpp"
 #include <iostream>
 
