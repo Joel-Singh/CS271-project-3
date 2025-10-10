@@ -5,7 +5,8 @@
 #include <stdlib.h>
 #include <string>
 
-#ifndef ENCRYPTION_JOEL
+#ifndef ENCRYPTION_JOEL // Use my name because cryptopp alread uses an
+                        // ENCRYPTION macro variable
 #define ENCRYPTION_JOEL
 
 using namespace std;
