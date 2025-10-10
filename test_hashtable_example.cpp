@@ -8,6 +8,7 @@
 #include "Element.h"
 #include "HashTable.h"
 #include "complexityTest.cpp"
+#include "test_HashTable.cpp"
 
 using namespace std;
 
@@ -200,16 +201,18 @@ void test_login()
 
 int main()
 {
-    cout << "Starting Testing" << endl;
+    cout << "Starting Currin's Testing" << endl;
 
-    // test_get_key();
-    // test_get_data();
-    // test_insert();
-    // test_remove();
-    // test_member();
-    // test_login();
-    //
-    cout << "Finished currin's tests" << endl;
+    test_get_key();
+    test_get_data();
+    test_insert();
+    test_remove();
+    test_member();
+    test_login();
+
+    cout << "Finished Currin's tests" << endl;
+
+    custom_tests();
 
     test_complexity();
 
