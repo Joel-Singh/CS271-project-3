@@ -27,7 +27,7 @@ HashTable<char> htChar(3);
 HashTable<string> htString(4);
 HashTable<bool> htBool(2);
 
-void custom_test_get_key() {
+void test_get_key_extended() {
   try {
     Element<int> elemInt;
     Element<bool> elemBool;
@@ -78,7 +78,7 @@ void custom_test_get_key() {
   }
 }
 
-void custom_test_get_data() {
+void test_get_data_extended() {
   try {
     Element<int> elemInt;
     Element<bool> elemBool;
@@ -129,7 +129,7 @@ void custom_test_get_data() {
   }
 }
 
-void custom_test_insert() {
+void test_insert_extended() {
   try {
     HashTable<int> htInt(-20);
   } catch (exception &e) {
@@ -186,7 +186,7 @@ void custom_test_insert() {
   }
 }
 
-void custom_test_remove() {
+void test_remove_extended() {
   try {
     htInt.remove(-12120, 212);
     if (htInt.to_string() !=
@@ -224,7 +224,7 @@ void custom_test_remove() {
   }
 }
 
-void custom_test_member() {
+void test_member_extended() {
   if (htInt.member(89, 201) != true) {
     cout << "Expected: 1 but got: " << htInt.member(89, 201) << endl;
   }
@@ -240,18 +240,18 @@ void custom_test_member() {
   }
 }
 
-int custom_tests(void) {
-  cout << "Starting custom tests" << endl;
+int test_extended(void) {
+  cout << "Starting extended tests" << endl;
 
-  custom_test_get_key();
-  custom_test_get_data();
-  custom_test_insert();
-  custom_test_remove();
-  custom_test_member();
+  test_get_key_extended();
+  test_get_data_extended();
+  test_insert_extended();
+  test_remove_extended();
+  test_member_extended();
 
-  custom_test_member();
+  test_member_extended();
 
-  cout << "Finished custom tests" << endl;
+  cout << "Finished extended tests" << endl;
 
   return 0;
 }

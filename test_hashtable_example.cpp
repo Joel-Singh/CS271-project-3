@@ -6,8 +6,8 @@
 #include "Element.h"
 #include "HashTable.h"
 #include "choose_hash_method.cpp"
-#include "test_HashTable.cpp"
 #include "test_complexity_and_load.cpp"
+#include "test_hashtable_extended.cpp"
 #include "usecase.cpp"
 #include <iostream>
 
@@ -181,7 +181,7 @@ int main() {
   cout << "Finished Currin's tests" << endl;
 
 #ifdef USE_K_MOD_M
-  custom_tests();
+  test_extended();
 #endif
 
   test_complexity();
