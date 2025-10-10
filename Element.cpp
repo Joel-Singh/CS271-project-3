@@ -27,7 +27,7 @@ Return: none. element object is constructed
 template<typename T>
     Element<T>:: Element ( void ){
 
-    if constexpr (std::is_same_v<T, int>) {
+    if constexpr (is_same_v<T, int> || is_same_v<T, char>) {
         data = 0;
     }
 

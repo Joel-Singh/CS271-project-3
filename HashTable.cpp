@@ -16,6 +16,8 @@ Program functionality: In Progress
 #include "HashTable.h"
 #include "encryption.cpp"
 #include <cassert>
+#include <cmath>
+#include "choose_hash_method.cpp"
 
 using namespace std;
 
@@ -43,6 +45,7 @@ Return: none. hash table object is constructed
 */
 template<typename T>
     HashTable<T>::HashTable (int size){
+        p = floor(log2(m)) + 1;
         if (size < 0){
             throw runtime_error("");
         }
@@ -78,7 +81,22 @@ returned
 template<typename T>
     int HashTable<T>:: default_hash_func ( int key ){
         assert(m != 0);
-        return (key % m);
+
+        #ifdef USE_K_MOD_M
+            return (key % m);
+        #endif
+
+        #ifdef USE_CORMEN
+            double A = (sqrt(5.0) - 1.0) / 2.0;
+            double kA = A * key;
+            double fractional_part = kA - floor(kA);
+            return floor((double)m * fractional_part);
+        #endif
+
+        #ifdef USE_MSBM
+            assert(sizeof(int) == 4);
+            return key >> (32 - p) % m;
+        #endif
 }
 
 

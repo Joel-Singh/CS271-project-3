@@ -9,6 +9,7 @@
 #include "HashTable.h"
 #include "complexityTest.cpp"
 #include "test_HashTable.cpp"
+#include "choose_hash_method.cpp"
 
 using namespace std;
 
@@ -203,16 +204,21 @@ int main()
 {
     cout << "Starting Currin's Testing" << endl;
 
-    test_get_key();
-    test_get_data();
-    test_insert();
-    test_remove();
-    test_member();
-    test_login();
+    // These tests assume using USE_K_MOD_M (e.g a key of value 3 will be in index 3)
+    #ifdef USE_K_MOD_M
+        test_get_key();
+        test_get_data();
+        test_insert();
+        test_remove();
+        test_member();
+        test_login();
+    #endif
 
     cout << "Finished Currin's tests" << endl;
 
-    custom_tests();
+    #ifdef USE_K_MOD_M
+        custom_tests();
+    #endif
 
     test_complexity();
 

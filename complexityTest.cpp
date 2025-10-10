@@ -14,6 +14,7 @@ three hash functions:
 #include <iostream>
 #include "Element.h"
 #include "HashTable.h"
+#include "choose_hash_method.cpp"
 
 #include <chrono>
 
@@ -42,6 +43,18 @@ HashTable<int> create_randomized_hashtable(int size, int element_count);
 int test_complexity() {
     cout << "===================" << endl;
     cout << "Starting Time Tests" << endl;
+    #ifdef USE_CORMEN
+    cout << "For Cormen's Method" << endl;
+    #endif 
+
+    #ifdef USE_MSBM
+    cout << "For Most Significant Bits Method" << endl;
+    #endif 
+
+    #ifdef USE_K_MOD_M
+    cout << "For k mod m Method" << endl;
+    #endif 
+
     cout << "===================" << endl;
     int sizes[5] = {1, 10, 100, 1000, 10000};
 

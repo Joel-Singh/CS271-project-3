@@ -92,7 +92,7 @@ void custom_test_get_data(){
             cout << "Expected data = 0/False but got: " << elemBool.get_key()<<" Oh no!"<<endl;
         } 
         if (elemChar.get_data() != '\0'){
-            cout << "Expected data = empty char but got: " << elemChar.get_key()<<" Too bad!"<<endl;
+            cout << "Expected data = empty char but got: " << elemChar.get_key()<<" Too bad!" << endl;
         }
         if (elemString.get_data() != ""){
             cout << "Expected data = empty string but got: " << elemString.get_key()<<" So sad!"<<endl;
@@ -219,7 +219,7 @@ void custom_test_member(){
 }
 
 int custom_tests ( void ){
-    cout << "Starting custom tests";
+    cout << "Starting custom tests" << endl;
 
     custom_test_get_key();
     custom_test_get_data();
@@ -229,7 +229,7 @@ int custom_tests ( void ){
 
     custom_test_member();
 
-    cout << "Finished custom tests";
+    cout << "Finished custom tests" << endl;
 
     return 0;
 }

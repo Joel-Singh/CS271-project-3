@@ -34,6 +34,7 @@ class HashTable{
         list<Element<T>> *arr; //hash table built on an array
 
         int             default_hash_func        ( int key );
+        int p; // The count of significant bits to take for the MSBM
 
 };
 
