@@ -1,6 +1,6 @@
 //*************************************************
-//  test_hashtable_example.cpp
-//  CS 271 Hash Table Project: Example Test File
+//  test_hashtable.cpp
+//  CS 271 Hash Table Project: File testing the HashTable
 //*************************************************
 
 #include "Element.h"
