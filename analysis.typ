@@ -21,7 +21,7 @@ For Most Significant Bits Method
 Randomized Hashtable insert with 2 elements of size 1 took 313 nanoseconds
 The highest load is 1 times the ideal load
 
-Randomized Hashtable insert with 20 elements of size 10 took 3089 nanoseconds
+Randomized Hashtable insert with 20 elements of size 10 took 308 nanoseconds
 The highest load is 10 times the ideal load
 
 Randomized Hashtable insert with 200 elements of size 100 took 105 nanoseconds
@@ -46,7 +46,7 @@ For Cormen's Method
 Randomized Hashtable insert with 2 elements of size 1 took 182 nanoseconds
 The highest load is 1 times the ideal load
 
-Randomized Hashtable insert with 20 elements of size 10 took 2695 nanoseconds
+Randomized Hashtable insert with 20 elements of size 10 took 269 nanoseconds
 The highest load is 1.5 times the ideal load
 
 Randomized Hashtable insert with 200 elements of size 100 took 138 nanoseconds
